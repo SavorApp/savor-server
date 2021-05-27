@@ -4,9 +4,7 @@ import { Model } from 'sequelize';
 interface UserAttributes {
   id: number;
   username: string;
-  image: string;
-  savoredListID: number;
-  viewedListID: number;
+  image_url: string;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
@@ -19,14 +17,17 @@ module.exports = (sequelize: any, DataTypes: any) => {
      */
     id!: number;
     username!: string;
-    image: string;
-    savoredListID: number;
-    viewedListID: number;
+    image_url!: string;
 
-    // static associate(models: any) {
-    //   // define association here
-    //   User.hasOne(models.SavoredList)
-    // }
+    static associate(models: any) {
+      // define association here
+      User.hasMany(models.Recipe, {
+        foreignKey: {
+          name: 'UserId',
+          allowNull: false
+        }
+      })
+    }
   };
   User.init({
     id: {
@@ -39,16 +40,8 @@ module.exports = (sequelize: any, DataTypes: any) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    image: {
+    image_url: {
       type: DataTypes.STRING,
-      allowNull: true,
-    },
-    savoredListID: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    viewedListID: {
-      type: DataTypes.INTEGER,
       allowNull: true,
     }
   }, {

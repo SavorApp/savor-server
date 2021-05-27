@@ -3,6 +3,7 @@ import { graphqlHTTP } from 'express-graphql';
 import { buildSchema } from 'graphql';
 import db from './models';
 import {users} from './seeders/users'
+import {recipes} from './seeders/recipes'
 import Schema from "./schema"
 
 const port = process.env.PORT || 4000;
@@ -27,15 +28,21 @@ const createUsers = () => {
     db.User.create(user)
   })
 }
+const createRecipes = () => {
+  recipes.map(recipe => {
+    db.Recipe.create(recipe)
+  })
+}
 
-// -- Seeds the users table --
-// createUsers()
 
 // The `listen` method launches a web server.
-db.sequelize.sync().then(() => {
+db.sequelize.sync({force: true}).then(() => {
   app.listen(port, () => {
+    // -- Seeds the users table --
+    createUsers()
+    createRecipes()
     console.log(`🚀  Server ready at ${port}`);
   });
-})
+}).catch((err: Error) => console.log(err));
 
 //npx sequelize-cli seed:generate --name demo-user
