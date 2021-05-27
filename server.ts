@@ -1,21 +1,29 @@
-const { ApolloServer, gql } = require("apollo-server");
+import express from 'express';
+import { graphqlHTTP } from 'express-graphql';
+import { buildSchema } from 'graphql';
+import db from './models';
 
-const port = 4000;
+const port = process.env.PORT || 4000;
 
-const typeDefs = gql`
-  type Book {
-    title: String
-    author: String
-  }
+const app = express();
 
-  type Query {
-    books: [Book]
-  }
-`;
+const schema = buildSchema(`
+type Query {
+  hello: String
+}`)
 
-const server = new ApolloServer({ typeDefs });
-
+app.use(
+  graphqlHTTP({
+    schema: schema,
+    // rootValue: root,
+    graphiql: true,
+  })
+);
 // The `listen` method launches a web server.
-server.listen(port, () => {
-  console.log(`🚀  Server ready at ${port}`);
-});
+db.sequelize.sync().then(() => {
+  app.listen(port, () => {
+    console.log(`🚀  Server ready at ${port}`);
+  });
+})
+
+// npm i dotenv
