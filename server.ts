@@ -1,21 +1,44 @@
-const { ApolloServer, gql } = require("apollo-server");
+import express from "express";
+import { graphqlHTTP } from "express-graphql";
+import { buildSchema } from "graphql";
+import db from "./models";
+import { users } from "./seeders/users";
+import { recipes } from "./seeders/recipes";
+import Schema from "./schema";
 
-const port = 4000;
+const port = process.env.PORT || 4000;
 
-const typeDefs = gql`
-  type Book {
-    title: String
-    author: String
-  }
+const app = express();
 
-  type Query {
-    books: [Book]
-  }
-`;
+app.use(
+  graphqlHTTP({
+    schema: Schema,
+    graphiql: true,
+  })
+);
 
-const server = new ApolloServer({ typeDefs });
+const createUsers = () => {
+  users.map((user) => {
+    db.User.create(user);
+  });
+};
+const createRecipes = () => {
+  recipes.map((recipe) => {
+    db.Recipe.create(recipe);
+  });
+};
 
 // The `listen` method launches a web server.
-server.listen(port, () => {
-  console.log(`🚀  Server ready at ${port}`);
-});
+db.sequelize
+  .sync({ force: true })
+  .then(() => {
+    app.listen(port, () => {
+      // -- Seeds the users table --
+      createUsers();
+      createRecipes();
+      console.log(`🚀  Server ready at ${port}`);
+    });
+  })
+  .catch((err: Error) => console.log(err));
+
+//npx sequelize-cli seed:generate --name demo-user
