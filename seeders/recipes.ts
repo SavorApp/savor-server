@@ -1,6 +1,6 @@
 export const recipes = [
   {
-    user_id: 1,
+    user_id: 2,
     recipe_id: 1,
     title: "Fried Anchovies with Sage",
     summary:
