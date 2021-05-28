@@ -6,7 +6,10 @@ interface RecipeAttributes {
   recipe_id: number;
   title: string;
   summary: string;
+  image: string;
   is_savored: boolean;
+  cuisine: string;
+  diet: string;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
@@ -20,8 +23,10 @@ module.exports = (sequelize: any, DataTypes: any) => {
     recipe_id!: number;
     title!: string;
     summary!: string;
+    image!: string;
     is_savored!: boolean;
-
+    cuisine!: string;
+    diet!: string;
     // static associate(models: any) {
     //   // define association here
     //   Recipe.belongsTo(models.User, {
@@ -48,8 +53,17 @@ module.exports = (sequelize: any, DataTypes: any) => {
       summary: {
         type: DataTypes.STRING,
       },
+      image: {
+        type: DataTypes.STRING,
+      },
       is_savored: {
         type: DataTypes.BOOLEAN,
+      },
+      cuisine: {
+        type: DataTypes.STRING,
+      },
+      diet: {
+        type: DataTypes.STRING,
       },
     },
     {
