@@ -22,7 +22,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
       // define association here
       User.hasMany(models.Recipe, {
         foreignKey: {
-          name: "UserId",
+          name: "user_id",
           allowNull: false,
         },
       });
