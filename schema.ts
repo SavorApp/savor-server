@@ -4,6 +4,7 @@ import {
   GraphQLInt,
   GraphQLString,
   GraphQLSchema,
+  GraphQLBoolean,
 } from "graphql";
 import db from "./models";
 import _ from "lodash";
@@ -118,8 +119,12 @@ const Recipe = new GraphQLObjectType({
           return recipe.image;
         },
       },
+      //this is a string - should be a graphqlboolean
+      //!!
+      //!!
+      //!!
       is_savored: {
-        type: GraphQLString,
+        type: GraphQLBoolean,
         resolve(recipe) {
           return recipe.is_savored;
         },
@@ -153,17 +158,28 @@ const Query = new GraphQLObjectType({
     return {
       recipe: {
         type: Recipe,
-        args: { user_id: { type: GraphQLInt } },
+        args: {
+          user_id: { type: GraphQLInt },
+          is_savored: { type: GraphQLBoolean },
+        },
         resolve(parent, args) {
-          console.log("🥶", args.user_id);
-          return db.Recipe.findAll({ where: { user_id: args.user_id } });
+          return db.Recipe.findAll({
+            where: { user_id: args.user_id, is_savored: args.is_savored },
+          });
         },
       },
       user: {
         type: User,
         args: { id: { type: GraphQLInt } },
         resolve(parent, args) {
-          return db.User.findByPK({ where: args.id });
+          return db.User.findByPk(args.id);
+        },
+      },
+      savoredRecipes: {
+        type: User,
+        args: { id: { type: GraphQLInt } },
+        resolve(parent, args) {
+          return db.User.findByPk(args.id);
         },
       },
       users: {
@@ -178,12 +194,49 @@ const Query = new GraphQLObjectType({
           return db.Recipe.findAll({ where: args });
         },
       },
+      isSavored: {
+        type: new GraphQLList(Recipe),
+        args: { id: { type: GraphQLInt } },
+        resolve(root, args) {
+          return db.Recipe.findAll({ where: { user_id: args.id } });
+        },
+      },
+    };
+  },
+});
+
+const Mutation = new GraphQLObjectType({
+  name: "Mutation",
+  description: "This is a root mutation",
+  fields: () => {
+    return {
+      addRecipe: {
+        type: Recipe,
+        args: {
+          user_id: { type: GraphQLInt },
+          summary: { type: GraphQLString },
+          title: { type: GraphQLString },
+          is_savored: { type: GraphQLBoolean },
+          recipe_id: { type: GraphQLInt },
+        },
+        resolve(parent, args) {
+          console.log(args);
+          return db.Recipe.create({
+            user_id: args.user_id,
+            summary: args.summary,
+            title: args.title,
+            is_savored: args.is_savored,
+            recipe_id: args.recipe_id,
+          });
+        },
+      },
     };
   },
 });
 
 const Schema = new GraphQLSchema({
   query: Query,
+  mutation: Mutation,
 });
 
 export default Schema;
