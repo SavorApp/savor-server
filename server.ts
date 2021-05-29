@@ -4,6 +4,7 @@ import { buildSchema } from "graphql";
 import db from "./models";
 import { users } from "./seeders/users";
 import { recipes } from "./seeders/recipes";
+import { filters } from "./seeders/filters";
 import Schema from "./schema";
 
 const port = process.env.PORT || 4000;
@@ -27,6 +28,11 @@ const createRecipes = () => {
     db.Recipe.create(recipe);
   });
 };
+const createFilters = () => {
+  filters.map((filter) => {
+    db.Filter.create(filter);
+  });
+};
 
 // The `listen` method launches a web server.
 db.sequelize
@@ -36,6 +42,7 @@ db.sequelize
       // -- Seeds the users table --
       createUsers();
       createRecipes();
+      createFilters();
       console.log(`🚀  Server ready at ${port}`);
     });
   })

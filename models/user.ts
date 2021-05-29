@@ -26,6 +26,12 @@ module.exports = (sequelize: any, DataTypes: any) => {
           allowNull: false,
         },
       });
+      User.hasMany(models.Filter, {
+        foreignKey: {
+          name: "user_id",
+          allowNull: false,
+        },
+      });
     }
   }
   User.init(

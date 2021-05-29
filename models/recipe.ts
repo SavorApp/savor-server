@@ -2,7 +2,6 @@
 import { Model } from "sequelize";
 
 interface RecipeAttributes {
-  // Recipe_id: number;
   recipe_id: number;
   title: string;
   summary: string;
