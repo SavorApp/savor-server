@@ -6,7 +6,6 @@ import {
 } from "graphql";
 import Recipe from "../typeDefs/Recipe";
 import User from "../typeDefs/User";
-import Filter from "../typeDefs/Filter";
 
 import db from "../models/index";
 
