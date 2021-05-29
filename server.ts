@@ -1,6 +1,5 @@
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
-import { buildSchema } from "graphql";
 import db from "./models";
 import { users } from "./seeders/users";
 import { recipes } from "./seeders/recipes";
@@ -43,9 +42,8 @@ db.sequelize
       createUsers();
       createRecipes();
       createFilters();
+
       console.log(`🚀  Server ready at ${port}`);
     });
   })
   .catch((err: Error) => console.log(err));
-
-//npx sequelize-cli seed:generate --name demo-user

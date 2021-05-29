@@ -8,7 +8,6 @@ import Recipe from "../typeDefs/Recipe";
 import User from "../typeDefs/User";
 import Filter from "../typeDefs/Filter";
 import db from "../models/index";
-import { filter } from "lodash";
 
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -84,7 +83,6 @@ const Mutation = new GraphQLObjectType({
           const filters = await db.Filter.findOne({
             where: { user_id: args.user_id },
           });
-          console.log("🤌THIS IS FILTERS: ", filters, "🚀THIS IS ARGS: ", args);
 
           // UPDATE filters
           filters.diet = args.diet;

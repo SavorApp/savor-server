@@ -1,10 +1,3 @@
-// diet (vegan, vegetarian, pescitarian, ...)
-// dish type (lunch, dinner, side, main, ...)
-// cuisine (Japanese, French, ...)
-// intolerance
-// time to cook
-// servings
-
 import { GraphQLObjectType, GraphQLInt, GraphQLString } from "graphql";
 
 const Filter = new GraphQLObjectType({
