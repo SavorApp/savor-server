@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "tsnd --respawn server.ts",
-    "start": "ts-node ./server.ts"
+    "start": "npx ts-node ./server.ts"
   },
   "keywords": [],
   "author": "",
