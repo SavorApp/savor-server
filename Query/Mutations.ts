@@ -17,7 +17,7 @@ const Mutation = new GraphQLObjectType({
       addRecipe: {
         type: Recipe,
         args: {
-          user_id: { type: GraphQLInt },
+          user_id: { type: GraphQLString },
           summary: { type: GraphQLString },
           title: { type: GraphQLString },
           is_savored: { type: GraphQLBoolean },
@@ -43,9 +43,9 @@ const Mutation = new GraphQLObjectType({
         },
         resolve(_, args) {
           return db.User.create({
-            id: { type: GraphQLString },
-            username: { type: GraphQLString },
-            image_url: { type: GraphQLString },
+            id: args.id,
+            username: args.username,
+            image_url: args.image_url,
           });
         },
       },
@@ -53,7 +53,7 @@ const Mutation = new GraphQLObjectType({
       deleteRecipe: {
         type: Recipe,
         args: {
-          user_id: { type: GraphQLInt },
+          user_id: { type: GraphQLString },
           recipe_id: { type: GraphQLInt },
         },
         async resolve(_, args) {
@@ -71,7 +71,7 @@ const Mutation = new GraphQLObjectType({
       deleteUser: {
         type: User,
         args: {
-          id: { type: GraphQLInt },
+          id: { type: GraphQLString },
         },
         async resolve(_, args) {
           const user = await db.User.findByPk(args.id);
@@ -82,7 +82,7 @@ const Mutation = new GraphQLObjectType({
       updateFilters: {
         type: Filter,
         args: {
-          user_id: { type: GraphQLInt },
+          user_id: { type: GraphQLString },
           diet: { type: GraphQLString },
           dish_type: { type: GraphQLString },
           cuisine: { type: GraphQLString },
