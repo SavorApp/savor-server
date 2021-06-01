@@ -2,7 +2,7 @@
 import { Model } from "sequelize";
 
 interface RecipeAttributes {
-  recipe_id: number;
+  recipe_id: string;
   title: string;
   summary: string;
   image: string;
@@ -19,7 +19,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
      * The `models/index` file will call this method automatically.
      */
     // Recipe_id!: number;
-    recipe_id!: number;
+    recipe_id!: string;
     title!: string;
     summary!: string;
     image!: string;
@@ -43,7 +43,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
       //   allowNull: false,
       // },
       recipe_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       title: {
