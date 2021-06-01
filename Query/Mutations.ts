@@ -24,13 +24,28 @@ const Mutation = new GraphQLObjectType({
           recipe_id: { type: GraphQLInt },
         },
         resolve(_, args) {
-          console.log(args);
           return db.Recipe.create({
             user_id: args.user_id,
             summary: args.summary,
             title: args.title,
             is_savored: args.is_savored,
             recipe_id: args.recipe_id,
+          });
+        },
+      },
+
+      createUser: {
+        type: User,
+        args: {
+          id: { type: GraphQLInt },
+          username: { type: GraphQLString },
+          image_url: { type: GraphQLString },
+        },
+        resolve(_, args) {
+          return db.User.create({
+            id: { type: GraphQLInt },
+            username: { type: GraphQLString },
+            image_url: { type: GraphQLString },
           });
         },
       },
