@@ -37,13 +37,13 @@ const Mutation = new GraphQLObjectType({
       createUser: {
         type: User,
         args: {
-          id: { type: GraphQLInt },
+          id: { type: GraphQLString },
           username: { type: GraphQLString },
           image_url: { type: GraphQLString },
         },
         resolve(_, args) {
           return db.User.create({
-            id: { type: GraphQLInt },
+            id: { type: GraphQLString },
             username: { type: GraphQLString },
             image_url: { type: GraphQLString },
           });

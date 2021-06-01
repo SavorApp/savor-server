@@ -1,5 +1,6 @@
 import {
   GraphQLList,
+  GraphQLString,
   GraphQLObjectType,
   GraphQLInt,
   GraphQLBoolean,
@@ -17,7 +18,7 @@ const Query = new GraphQLObjectType({
       recipe: {
         type: Recipe,
         args: {
-          user_id: { type: GraphQLInt },
+          user_id: { type: GraphQLString },
           is_savored: { type: GraphQLBoolean },
         },
         resolve(parent, args) {
@@ -28,14 +29,14 @@ const Query = new GraphQLObjectType({
       },
       user: {
         type: User,
-        args: { id: { type: GraphQLInt } },
+        args: { id: { type: GraphQLString } },
         resolve(parent, args) {
           return db.User.findByPk(args.id);
         },
       },
       savoredRecipes: {
         type: User,
-        args: { id: { type: GraphQLInt } },
+        args: { id: { type: GraphQLString } },
         resolve(parent, args) {
           return db.User.findByPk(args.id);
         },
@@ -54,7 +55,7 @@ const Query = new GraphQLObjectType({
       },
       isSavored: {
         type: new GraphQLList(Recipe),
-        args: { id: { type: GraphQLInt } },
+        args: { id: { type: GraphQLString } },
         resolve(root, args) {
           return db.Recipe.findAll({
             where: { user_id: args.id, is_savored: true },
