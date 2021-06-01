@@ -1,4 +1,9 @@
-import { GraphQLObjectType, GraphQLString, GraphQLBoolean } from "graphql";
+import {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLBoolean,
+  GraphQLInt,
+} from "graphql";
 
 const Recipe = new GraphQLObjectType({
   name: "Recipe",
@@ -6,7 +11,7 @@ const Recipe = new GraphQLObjectType({
   fields: () => {
     return {
       recipe_id: {
-        type: GraphQLString,
+        type: GraphQLInt,
       },
       title: {
         type: GraphQLString,

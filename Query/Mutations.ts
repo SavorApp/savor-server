@@ -21,7 +21,7 @@ const Mutation = new GraphQLObjectType({
           summary: { type: GraphQLString },
           title: { type: GraphQLString },
           is_savored: { type: GraphQLBoolean },
-          recipe_id: { type: GraphQLString },
+          recipe_id: { type: GraphQLInt },
         },
         resolve(_, args) {
           return db.Recipe.create({
@@ -54,7 +54,7 @@ const Mutation = new GraphQLObjectType({
         type: Recipe,
         args: {
           user_id: { type: GraphQLString },
-          recipe_id: { type: GraphQLString },
+          recipe_id: { type: GraphQLInt },
         },
         async resolve(_, args) {
           const recipe = await db.Recipe.findOne({

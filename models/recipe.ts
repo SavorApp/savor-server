@@ -2,13 +2,13 @@
 import { Model } from "sequelize";
 
 interface RecipeAttributes {
-  recipe_id: string;
+  recipe_id: number;
   title: string;
   summary: string;
-  image: string;
+  // image: string;
   is_savored: boolean;
-  cuisine: string;
-  diet: string;
+  // cuisine: string;
+  // diet: string;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
@@ -19,13 +19,13 @@ module.exports = (sequelize: any, DataTypes: any) => {
      * The `models/index` file will call this method automatically.
      */
     // Recipe_id!: number;
-    recipe_id!: string;
+    recipe_id!: number;
     title!: string;
     summary!: string;
-    image!: string;
+    // image!: string;
     is_savored!: boolean;
-    cuisine!: string;
-    diet!: string;
+    // cuisine!: string;
+    // diet!: string;
     // static associate(models: any) {
     //   // define association here
     //   Recipe.belongsTo(models.User, {
@@ -43,7 +43,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
       //   allowNull: false,
       // },
       recipe_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       title: {
@@ -52,18 +52,18 @@ module.exports = (sequelize: any, DataTypes: any) => {
       summary: {
         type: DataTypes.STRING,
       },
-      image: {
-        type: DataTypes.STRING,
-      },
+      // image: {
+      //   type: DataTypes.STRING,
+      // },
       is_savored: {
         type: DataTypes.BOOLEAN,
       },
-      cuisine: {
-        type: DataTypes.STRING,
-      },
-      diet: {
-        type: DataTypes.STRING,
-      },
+      // cuisine: {
+      //   type: DataTypes.STRING,
+      // },
+      // diet: {
+      //   type: DataTypes.STRING,
+      // },
     },
     {
       sequelize,
