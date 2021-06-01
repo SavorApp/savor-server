@@ -1,6 +1,6 @@
 export const recipes = [
   {
-    user_id: 2,
+    user_id: "2",
     recipe_id: 1,
     title: "Fried Anchovies with Sage",
     summary:
@@ -8,7 +8,7 @@ export const recipes = [
     is_savored: false,
   },
   {
-    user_id: 2,
+    user_id: "2",
     recipe_id: 10050,
     title: "Grilled Garage",
     summary:
@@ -16,7 +16,7 @@ export const recipes = [
     is_savored: true,
   },
   {
-    user_id: 3,
+    user_id: "3",
     recipe_id: 3,
     title: "Surstromning",
     summary: "Enjoy vomiting on yourself when eating this rotten fish.",

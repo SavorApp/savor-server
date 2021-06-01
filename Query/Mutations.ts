@@ -37,13 +37,13 @@ const Mutation = new GraphQLObjectType({
       createUser: {
         type: User,
         args: {
-          id: { type: GraphQLString },
+          _id: { type: GraphQLString },
           username: { type: GraphQLString },
           image_url: { type: GraphQLString },
         },
         resolve(_, args) {
           return db.User.create({
-            id: args.id,
+            _id: args._id,
             username: args.username,
             image_url: args.image_url,
           });
@@ -71,10 +71,10 @@ const Mutation = new GraphQLObjectType({
       deleteUser: {
         type: User,
         args: {
-          id: { type: GraphQLString },
+          _id: { type: GraphQLString },
         },
         async resolve(_, args) {
-          const user = await db.User.findByPk(args.id);
+          const user = await db.User.findByPk(args._id);
           user.destroy();
           return user;
         },

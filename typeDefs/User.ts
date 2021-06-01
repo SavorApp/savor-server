@@ -13,8 +13,8 @@ const User = new GraphQLObjectType({
   description: "This represents a User",
   fields: () => {
     return {
-      id: {
-        type: GraphQLInt,
+      _id: {
+        type: GraphQLString,
       },
       username: {
         type: GraphQLString,
@@ -25,13 +25,13 @@ const User = new GraphQLObjectType({
       recipes: {
         type: new GraphQLList(Recipe),
         resolve(parent, args) {
-          return db.Recipe.findAll({ where: { user_id: parent.id } });
+          return db.Recipe.findAll({ where: { user_id: parent._id } });
         },
       },
       filters: {
         type: new GraphQLList(Filter),
         resolve(parent, args) {
-          return db.Filter.findAll({ where: { user_id: parent.id } });
+          return db.Filter.findAll({ where: { user_id: parent._id } });
         },
       },
     };

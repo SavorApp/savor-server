@@ -24,7 +24,7 @@ const Filter = new GraphQLObjectType({
         type: GraphQLInt,
       },
       user_id: {
-        type: GraphQLInt,
+        type: GraphQLString,
       },
     };
   },

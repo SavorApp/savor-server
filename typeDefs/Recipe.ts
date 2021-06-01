@@ -32,7 +32,7 @@ const Recipe = new GraphQLObjectType({
         type: GraphQLString,
       },
       user_id: {
-        type: GraphQLInt,
+        type: GraphQLString,
       },
     };
   },

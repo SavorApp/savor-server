@@ -29,16 +29,16 @@ const Query = new GraphQLObjectType({
       },
       user: {
         type: User,
-        args: { id: { type: GraphQLString } },
+        args: { _id: { type: GraphQLString } },
         resolve(parent, args) {
-          return db.User.findByPk(args.id);
+          return db.User.findByPk(args._id);
         },
       },
       savoredRecipes: {
         type: User,
-        args: { id: { type: GraphQLString } },
+        args: { _id: { type: GraphQLString } },
         resolve(parent, args) {
-          return db.User.findByPk(args.id);
+          return db.User.findByPk(args._id);
         },
       },
       users: {
@@ -55,10 +55,10 @@ const Query = new GraphQLObjectType({
       },
       isSavored: {
         type: new GraphQLList(Recipe),
-        args: { id: { type: GraphQLString } },
+        args: { _id: { type: GraphQLString } },
         resolve(root, args) {
           return db.Recipe.findAll({
-            where: { user_id: args.id, is_savored: true },
+            where: { user_id: args._id, is_savored: true },
           });
         },
       },

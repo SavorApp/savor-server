@@ -6,7 +6,7 @@ export const filters = [
     additional_requests: "extra cheese",
     time_to_cook: 50,
     servings: 4,
-    user_id: 1,
+    user_id: "1",
   },
   {
     diet: "pescatarian",
@@ -15,7 +15,7 @@ export const filters = [
     additional_requests: "no bones",
     time_to_cook: 30,
     servings: 2,
-    user_id: 3,
+    user_id: "3",
   },
   {
     diet: "fermented stuff",
@@ -24,6 +24,6 @@ export const filters = [
     additional_requests: "extra fermented",
     time_to_cook: 3000,
     servings: 1,
-    user_id: 2,
+    user_id: "2",
   },
 ];
