@@ -1,5 +1,7 @@
 "use strict";
-require("dotenv").config();
+
+require('dotenv').config()
+
 const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
@@ -8,6 +10,7 @@ const env = process.env.NODE_ENV || "development";
 // const config = require(__dirname + "/../config/config.js")[env];
 import { config } from "../config/config";
 const db: any = {};
+
 
 // let sequelize: any = new Sequelize(
 //   process.env.DATABASE_URL || { dialect: "postgres" }
