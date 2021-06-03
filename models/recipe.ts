@@ -18,15 +18,6 @@ interface RecipeAttributes {
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class Recipe extends Model<RecipeAttributes> implements RecipeAttributes {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    // Recipe_id!: number;
-
-    // image!: string;
-
     id: number;
     title: string;
     cuisine: string;
@@ -39,17 +30,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
     servings: number;
     ingredients: [string];
     isSavored: boolean;
-    // cuisine!: string;
-    // diet!: string;
-    // static associate(models: any) {
-    //   // define association here
-    //   Recipe.belongsTo(models.User, {
-    //     foreignKey: {
-    //       name: 'id',
-    //       allowNull: false
-    //     }
-    //   })
-    // }
   }
   Recipe.init(
     {

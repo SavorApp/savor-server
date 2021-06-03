@@ -21,7 +21,7 @@ const Mutation = new GraphQLObjectType({
           user_id: {
             type: GraphQLString,
           },
-          recipe_id: {
+          id: {
             type: GraphQLInt,
           },
           title: {
@@ -61,7 +61,7 @@ const Mutation = new GraphQLObjectType({
         resolve(_, args) {
           return db.Recipe.create({
             user_id: args.user_id,
-            recipe_id: args.recipe_id,
+            id: args.id,
             title: args.title,
             cuisine: args.cuisine,
             dishType: args.dishType,
