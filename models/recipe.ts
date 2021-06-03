@@ -2,7 +2,7 @@
 import { Model } from "sequelize";
 
 interface RecipeAttributes {
-  recipe_id: number;
+  id: number;
   title: string;
   cuisine: string;
   dishType: string;
@@ -27,7 +27,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
 
     // image!: string;
 
-    recipe_id: number;
+    id: number;
     title: string;
     cuisine: string;
     dishType: string;
@@ -53,9 +53,10 @@ module.exports = (sequelize: any, DataTypes: any) => {
   }
   Recipe.init(
     {
-      recipe_id: {
+      id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
       },
       title: {
         type: DataTypes.STRING,
