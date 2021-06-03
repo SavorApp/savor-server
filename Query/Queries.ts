@@ -15,19 +15,6 @@ const Query = new GraphQLObjectType({
   description: "This is a root query",
   fields: () => {
     return {
-      /*
-      recipe: {
-        type: User,
-        args: {
-          _id: { type: GraphQLString },
-          recipe_id: { type: GraphQLInt },
-        },
-        async resolve(parent, args) {
-          const user = await db.User.findByPk(args._id);
-          console.log(user);
-        },
-      },
-*/
       recipe: {
         type: Recipe,
         args: {

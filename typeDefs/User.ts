@@ -26,7 +26,7 @@ const User = new GraphQLObjectType({
         type: new GraphQLList(Recipe),
         resolve(parent, args) {
           return db.Recipe.findOne({
-            where: { user_id: parent._id, recipe_id: args.recipe_id },
+            where: { user_id: parent._id, id: args.id },
           });
         },
       },
