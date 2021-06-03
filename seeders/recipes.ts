@@ -5,7 +5,7 @@ export const recipes = [
     title: "Fried Anchovies with Sage",
     summary:
       "Fried Anchovies with Sage might be just the main course you are searching for.",
-    is_savored: false,
+    isSavored: false,
   },
   {
     user_id: "2",
@@ -13,14 +13,14 @@ export const recipes = [
     title: "Grilled Garage",
     summary:
       "Expensive cars have been parked inside this grilled garage. Enjoy perfectly cooked lamborghinis paired with shovels from Vietnam.",
-    is_savored: true,
+    isSavored: true,
   },
   {
     user_id: "2",
     recipe_id: 3,
     title: "Surstromning",
     summary: "Enjoy vomiting on yourself when eating this rotten fish.",
-    is_savored: false,
+    isSavored: false,
     ingredients: ["boots"],
   },
 ];
