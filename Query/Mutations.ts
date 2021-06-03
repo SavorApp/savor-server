@@ -17,11 +17,52 @@ const Mutation = new GraphQLObjectType({
       addRecipe: {
         type: Recipe,
         args: {
+          /*
           user_id: { type: GraphQLString },
           summary: { type: GraphQLString },
           title: { type: GraphQLString },
           is_savored: { type: GraphQLBoolean },
           recipe_id: { type: GraphQLInt },
+          recipe_id: {
+            type: GraphQLInt,
+          },
+          */
+          title: {
+            type: GraphQLString,
+          },
+          summary: {
+            type: GraphQLString,
+          },
+          is_savored: {
+            type: GraphQLBoolean,
+          },
+          cuisine: {
+            type: GraphQLString,
+          },
+          user_id: {
+            type: GraphQLString,
+          },
+          vegetarian: {
+            type: GraphQLBoolean,
+          },
+          vegan: {
+            type: GraphQLBoolean,
+          },
+          gluten_free: {
+            type: GraphQLBoolean,
+          },
+          dairy_free: {
+            type: GraphQLBoolean,
+          },
+          ready_in_minutes: {
+            type: GraphQLInt,
+          },
+          servings: {
+            type: GraphQLInt,
+          },
+          ingredients: {
+            type: GraphQLString,
+          },
         },
         resolve(_, args) {
           return db.Recipe.create({
@@ -30,6 +71,17 @@ const Mutation = new GraphQLObjectType({
             title: args.title,
             is_savored: args.is_savored,
             recipe_id: args.recipe_id,
+            cuisine: args.cuisine,
+            vegetarian: args.vegetarian,
+            vegan: args.vegan,
+            gluten_free: args.gluten_free,
+            dairy_free: args.dairy_free,
+            ready_in_minutes: args.ready_in_minutes,
+            servings: args.servings,
+            ingredients: args.ingredients,
+            /*
+
+            */
           });
         },
       },
@@ -82,12 +134,28 @@ const Mutation = new GraphQLObjectType({
       updateFilters: {
         type: Filter,
         args: {
-          user_id: { type: GraphQLString },
-          diet: { type: GraphQLString },
-          dish_type: { type: GraphQLString },
-          cuisine: { type: GraphQLString },
-          additional_requests: { type: GraphQLString },
-          time_to_cook: {
+          smart_filter: {
+            type: GraphQLBoolean,
+          },
+          dish_type: {
+            type: GraphQLString,
+          },
+          cuisine: {
+            type: GraphQLString,
+          },
+          vegetarian: {
+            type: GraphQLBoolean,
+          },
+          vegan: {
+            type: GraphQLBoolean,
+          },
+          gluten_free: {
+            type: GraphQLBoolean,
+          },
+          dairy_free: {
+            type: GraphQLBoolean,
+          },
+          ready_in_minutes: {
             type: GraphQLInt,
           },
           servings: {
@@ -100,12 +168,24 @@ const Mutation = new GraphQLObjectType({
           });
 
           // UPDATE filters
+
+          filters.smart_filter = args.smart_filter;
+          filters.dish_type = args.dish_type;
+          filters.cuisine = args.cuisine;
+          filters.vegetarian = args.vegetarian;
+          filters.vegan = args.vegan;
+          filters.gluten_free = args.gluten_free;
+          filters.dairy_free = args.dairy_free;
+          filters.ready_in_minutes = args.ready_in_minutes;
+          filters.servings = args.servings;
+          /*
           filters.diet = args.diet;
           filters.dish_type = args.dish_type;
           filters.cuisine = args.cuisine;
           filters.additional_requests = args.additional_requests;
           filters.time_to_cook = args.time_to_cook;
           filters.servings = args.servings;
+          */
 
           await filters.save();
 

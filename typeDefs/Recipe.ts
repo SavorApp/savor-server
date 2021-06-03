@@ -19,19 +19,34 @@ const Recipe = new GraphQLObjectType({
       summary: {
         type: GraphQLString,
       },
-      image: {
-        type: GraphQLString,
-      },
       is_savored: {
         type: GraphQLBoolean,
       },
       cuisine: {
         type: GraphQLString,
       },
-      diet: {
+      user_id: {
         type: GraphQLString,
       },
-      user_id: {
+      vegetarian: {
+        type: GraphQLBoolean,
+      },
+      vegan: {
+        type: GraphQLBoolean,
+      },
+      gluten_free: {
+        type: GraphQLBoolean,
+      },
+      dairy_free: {
+        type: GraphQLBoolean,
+      },
+      ready_in_minutes: {
+        type: GraphQLInt,
+      },
+      servings: {
+        type: GraphQLInt,
+      },
+      ingredients: {
         type: GraphQLString,
       },
     };

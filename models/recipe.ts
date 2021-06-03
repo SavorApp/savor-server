@@ -7,8 +7,14 @@ interface RecipeAttributes {
   summary: string;
   // image: string;
   is_savored: boolean;
-  // cuisine: string;
-  // diet: string;
+  cuisine: string;
+  vegetarian: boolean;
+  vegan: boolean;
+  gluten_free: boolean;
+  dairy_free: boolean;
+  ready_in_minutes: number;
+  servings: number;
+  ingredients: string;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
@@ -19,11 +25,22 @@ module.exports = (sequelize: any, DataTypes: any) => {
      * The `models/index` file will call this method automatically.
      */
     // Recipe_id!: number;
+
+    // image!: string;
+
     recipe_id!: number;
     title!: string;
     summary!: string;
-    // image!: string;
+    // image: string;
     is_savored!: boolean;
+    cuisine!: string;
+    vegetarian!: boolean;
+    vegan!: boolean;
+    gluten_free!: boolean;
+    dairy_free!: boolean;
+    ready_in_minutes!: number;
+    servings!: number;
+    ingredients!: string;
     // cuisine!: string;
     // diet!: string;
     // static associate(models: any) {
@@ -52,19 +69,35 @@ module.exports = (sequelize: any, DataTypes: any) => {
       summary: {
         type: DataTypes.STRING,
       },
-      // image: {
-      //   type: DataTypes.STRING,
-      // },
       is_savored: {
         type: DataTypes.BOOLEAN,
       },
-      // cuisine: {
-      //   type: DataTypes.STRING,
-      // },
-      // diet: {
-      //   type: DataTypes.STRING,
-      // },
+      cuisine: {
+        type: DataTypes.STRING,
+      },
+      vegetarian: {
+        type: DataTypes.BOOLEAN,
+      },
+      vegan: {
+        type: DataTypes.BOOLEAN,
+      },
+      gluten_free: {
+        type: DataTypes.BOOLEAN,
+      },
+      dairy_free: {
+        type: DataTypes.BOOLEAN,
+      },
+      ready_in_minutes: {
+        type: DataTypes.INTEGER,
+      },
+      servings: {
+        type: DataTypes.INTEGER,
+      },
+      ingredients: {
+        type: DataTypes.STRING,
+      },
     },
+
     {
       sequelize,
       modelName: "Recipe",
