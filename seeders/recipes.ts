@@ -16,10 +16,10 @@ export const recipes = [
     is_savored: true,
   },
   {
-    user_id: "3",
+    user_id: "2",
     recipe_id: 3,
     title: "Surstromning",
     summary: "Enjoy vomiting on yourself when eating this rotten fish.",
-    is_savored: true,
+    is_savored: false,
   },
 ];
