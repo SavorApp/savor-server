@@ -3,6 +3,7 @@ import {
   GraphQLInt,
   GraphQLString,
   GraphQLBoolean,
+  GraphQLList,
 } from "graphql";
 import Recipe from "../typeDefs/Recipe";
 import User from "../typeDefs/User";
@@ -61,7 +62,7 @@ const Mutation = new GraphQLObjectType({
             type: GraphQLInt,
           },
           ingredients: {
-            type: GraphQLString,
+            type: GraphQLList(GraphQLString),
           },
         },
         resolve(_, args) {
