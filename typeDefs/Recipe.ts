@@ -3,6 +3,7 @@ import {
   GraphQLString,
   GraphQLBoolean,
   GraphQLInt,
+  GraphQLList,
 } from "graphql";
 
 const Recipe = new GraphQLObjectType({
@@ -47,7 +48,7 @@ const Recipe = new GraphQLObjectType({
         type: GraphQLInt,
       },
       ingredients: {
-        type: GraphQLString,
+        type: new GraphQLList(GraphQLString),
       },
     };
   },

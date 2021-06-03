@@ -21,5 +21,6 @@ export const recipes = [
     title: "Surstromning",
     summary: "Enjoy vomiting on yourself when eating this rotten fish.",
     is_savored: false,
+    ingredients: ["boots"],
   },
 ];

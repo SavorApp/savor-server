@@ -14,7 +14,7 @@ interface RecipeAttributes {
   dairy_free: boolean;
   ready_in_minutes: number;
   servings: number;
-  ingredients: string;
+  ingredients: [string];
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
@@ -40,7 +40,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
     dairy_free!: boolean;
     ready_in_minutes!: number;
     servings!: number;
-    ingredients!: string;
+    ingredients!: [string];
     // cuisine!: string;
     // diet!: string;
     // static associate(models: any) {
@@ -94,7 +94,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
         type: DataTypes.INTEGER,
       },
       ingredients: {
-        type: DataTypes.STRING,
+        type: DataTypes.ARRAY(DataTypes.STRING),
       },
     },
 
