@@ -11,22 +11,19 @@ const Recipe = new GraphQLObjectType({
   description: "This represents a Recipe",
   fields: () => {
     return {
+      user_id: {
+        type: GraphQLString,
+      },
       recipe_id: {
         type: GraphQLInt,
       },
       title: {
         type: GraphQLString,
       },
-      summary: {
-        type: GraphQLString,
-      },
-      is_savored: {
-        type: GraphQLBoolean,
-      },
       cuisine: {
         type: GraphQLString,
       },
-      user_id: {
+      dishType: {
         type: GraphQLString,
       },
       vegetarian: {
@@ -35,13 +32,13 @@ const Recipe = new GraphQLObjectType({
       vegan: {
         type: GraphQLBoolean,
       },
-      gluten_free: {
+      glutenFree: {
         type: GraphQLBoolean,
       },
-      dairy_free: {
+      dairyFree: {
         type: GraphQLBoolean,
       },
-      ready_in_minutes: {
+      readyInMinutes: {
         type: GraphQLInt,
       },
       servings: {
@@ -49,6 +46,9 @@ const Recipe = new GraphQLObjectType({
       },
       ingredients: {
         type: new GraphQLList(GraphQLString),
+      },
+      isSavored: {
+        type: GraphQLBoolean,
       },
     };
   },

@@ -4,17 +4,16 @@ import { Model } from "sequelize";
 interface RecipeAttributes {
   recipe_id: number;
   title: string;
-  summary: string;
-  // image: string;
-  is_savored: boolean;
   cuisine: string;
+  dishType: string;
   vegetarian: boolean;
   vegan: boolean;
-  gluten_free: boolean;
-  dairy_free: boolean;
-  ready_in_minutes: number;
+  glutenFree: boolean;
+  dairyFree: boolean;
+  readyInMinutes: number;
   servings: number;
   ingredients: [string];
+  isSavored: boolean;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
@@ -28,19 +27,18 @@ module.exports = (sequelize: any, DataTypes: any) => {
 
     // image!: string;
 
-    recipe_id!: number;
-    title!: string;
-    summary!: string;
-    // image: string;
-    is_savored!: boolean;
-    cuisine!: string;
-    vegetarian!: boolean;
-    vegan!: boolean;
-    gluten_free!: boolean;
-    dairy_free!: boolean;
-    ready_in_minutes!: number;
-    servings!: number;
-    ingredients!: [string];
+    recipe_id: number;
+    title: string;
+    cuisine: string;
+    dishType: string;
+    vegetarian: boolean;
+    vegan: boolean;
+    glutenFree: boolean;
+    dairyFree: boolean;
+    readyInMinutes: number;
+    servings: number;
+    ingredients: [string];
+    isSavored: boolean;
     // cuisine!: string;
     // diet!: string;
     // static associate(models: any) {
@@ -55,10 +53,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
   }
   Recipe.init(
     {
-      // user_id: {
-      //   type: DataTypes.INTEGER,
-      //   allowNull: false,
-      // },
       recipe_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -66,13 +60,10 @@ module.exports = (sequelize: any, DataTypes: any) => {
       title: {
         type: DataTypes.STRING,
       },
-      summary: {
+      cuisine: {
         type: DataTypes.STRING,
       },
-      is_savored: {
-        type: DataTypes.BOOLEAN,
-      },
-      cuisine: {
+      dishType: {
         type: DataTypes.STRING,
       },
       vegetarian: {
@@ -81,13 +72,13 @@ module.exports = (sequelize: any, DataTypes: any) => {
       vegan: {
         type: DataTypes.BOOLEAN,
       },
-      gluten_free: {
+      glutenFree: {
         type: DataTypes.BOOLEAN,
       },
-      dairy_free: {
+      dairyFree: {
         type: DataTypes.BOOLEAN,
       },
-      ready_in_minutes: {
+      readyInMinutes: {
         type: DataTypes.INTEGER,
       },
       servings: {
@@ -95,6 +86,9 @@ module.exports = (sequelize: any, DataTypes: any) => {
       },
       ingredients: {
         type: DataTypes.ARRAY(DataTypes.STRING),
+      },
+      isSavored: {
+        type: DataTypes.BOOLEAN,
       },
     },
 

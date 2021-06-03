@@ -18,29 +18,19 @@ const Mutation = new GraphQLObjectType({
       addRecipe: {
         type: Recipe,
         args: {
-          /*
-          user_id: { type: GraphQLString },
-          summary: { type: GraphQLString },
-          title: { type: GraphQLString },
-          is_savored: { type: GraphQLBoolean },
-          recipe_id: { type: GraphQLInt },
+          user_id: {
+            type: GraphQLString,
+          },
           recipe_id: {
             type: GraphQLInt,
           },
-          */
           title: {
             type: GraphQLString,
-          },
-          summary: {
-            type: GraphQLString,
-          },
-          is_savored: {
-            type: GraphQLBoolean,
           },
           cuisine: {
             type: GraphQLString,
           },
-          user_id: {
+          dishType: {
             type: GraphQLString,
           },
           vegetarian: {
@@ -49,40 +39,40 @@ const Mutation = new GraphQLObjectType({
           vegan: {
             type: GraphQLBoolean,
           },
-          gluten_free: {
+          glutenFree: {
             type: GraphQLBoolean,
           },
-          dairy_free: {
+          dairyFree: {
             type: GraphQLBoolean,
           },
-          ready_in_minutes: {
+          readyInMinutes: {
             type: GraphQLInt,
           },
           servings: {
             type: GraphQLInt,
           },
           ingredients: {
-            type: GraphQLList(GraphQLString),
+            type: new GraphQLList(GraphQLString),
+          },
+          isSavored: {
+            type: GraphQLBoolean,
           },
         },
         resolve(_, args) {
           return db.Recipe.create({
             user_id: args.user_id,
-            summary: args.summary,
-            title: args.title,
-            is_savored: args.is_savored,
             recipe_id: args.recipe_id,
+            title: args.title,
             cuisine: args.cuisine,
+            dishType: args.dishType,
             vegetarian: args.vegetarian,
             vegan: args.vegan,
-            gluten_free: args.gluten_free,
-            dairy_free: args.dairy_free,
-            ready_in_minutes: args.ready_in_minutes,
+            glutenFree: args.glutenFree,
+            dairyFree: args.dairyFree,
+            readyInMinutes: args.readyInMinutes,
             servings: args.servings,
             ingredients: args.ingredients,
-            /*
-
-            */
+            isSavored: args.isSavored,
           });
         },
       },
