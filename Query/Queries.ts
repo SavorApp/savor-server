@@ -15,16 +15,27 @@ const Query = new GraphQLObjectType({
   description: "This is a root query",
   fields: () => {
     return {
+      /*
+      recipe: {
+        type: User,
+        args: {
+          _id: { type: GraphQLString },
+          recipe_id: { type: GraphQLInt },
+        },
+        async resolve(parent, args) {
+          const user = await db.User.findByPk(args._id);
+          console.log(user);
+        },
+      },
+*/
       recipe: {
         type: Recipe,
         args: {
-          user_id: { type: GraphQLString },
-          is_savored: { type: GraphQLBoolean },
+          // _id: { type: GraphQLString },
+          recipe_id: { type: GraphQLInt },
         },
         resolve(parent, args) {
-          return db.Recipe.findAll({
-            where: { user_id: args.user_id, is_savored: args.is_savored },
-          });
+          return db.Recipe.findOne(args.recipe_id);
         },
       },
       user: {

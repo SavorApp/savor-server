@@ -9,11 +9,21 @@ import { Model } from "sequelize";
 // servings
 
 interface FilterAttributes {
-  diet: string;
+  // diet: string;
+  // dish_type: string;
+  // cuisine: string;
+  // additional_requests: string;
+  // time_to_cook: number;
+  // servings: number;
+
+  smart_filter: boolean;
   dish_type: string;
   cuisine: string;
-  additional_requests: string;
-  time_to_cook: number;
+  vegetarian: boolean;
+  vegan: boolean;
+  gluten_free: boolean;
+  dairy_free: boolean;
+  ready_in_minutes: number;
   servings: number;
 }
 
@@ -25,11 +35,21 @@ module.exports = (sequelize: any, DataTypes: any) => {
      * The `models/index` file will call this method automatically.
      */
 
-    diet!: string;
+    // diet!: string;
+    // dish_type!: string;
+    // cuisine!: string;
+    // additional_requests!: string;
+    // time_to_cook!: number;
+    // servings!: number;
+
+    smart_filter!: boolean;
     dish_type!: string;
     cuisine!: string;
-    additional_requests!: string;
-    time_to_cook!: number;
+    vegetarian!: boolean;
+    vegan!: boolean;
+    gluten_free!: boolean;
+    dairy_free!: boolean;
+    ready_in_minutes!: number;
     servings!: number;
 
     // static associate(models: any) {
@@ -38,6 +58,34 @@ module.exports = (sequelize: any, DataTypes: any) => {
   }
   Filter.init(
     {
+      smart_filter: {
+        type: DataTypes.BOOLEAN,
+      },
+      dish_type: {
+        type: DataTypes.STRING,
+      },
+      cuisine: {
+        type: DataTypes.STRING,
+      },
+      vegetarian: {
+        type: DataTypes.BOOLEAN,
+      },
+      vegan: {
+        type: DataTypes.BOOLEAN,
+      },
+      gluten_free: {
+        type: DataTypes.BOOLEAN,
+      },
+      dairy_free: {
+        type: DataTypes.BOOLEAN,
+      },
+      ready_in_minutes: {
+        type: DataTypes.INTEGER,
+      },
+      servings: {
+        type: DataTypes.INTEGER,
+      },
+      /*
       diet: {
         type: DataTypes.STRING,
       },
@@ -56,6 +104,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
       servings: {
         type: DataTypes.INTEGER,
       },
+      */
     },
     {
       sequelize,
