@@ -97,13 +97,13 @@ const Mutation = new GraphQLObjectType({
         type: Recipe,
         args: {
           user_id: { type: GraphQLString },
-          recipe_id: { type: GraphQLInt },
+          id: { type: GraphQLInt },
         },
         async resolve(_, args) {
           const recipe = await db.Recipe.findOne({
             where: {
               user_id: args.user_id,
-              recipe_id: args.recipe_id,
+              id: args.id,
             },
           });
           recipe.destroy();
@@ -125,10 +125,10 @@ const Mutation = new GraphQLObjectType({
       updateFilters: {
         type: Filter,
         args: {
-          smart_filter: {
+          smartFilter: {
             type: GraphQLBoolean,
           },
-          dish_type: {
+          dishType: {
             type: GraphQLString,
           },
           cuisine: {
@@ -140,13 +140,13 @@ const Mutation = new GraphQLObjectType({
           vegan: {
             type: GraphQLBoolean,
           },
-          gluten_free: {
+          glutenFree: {
             type: GraphQLBoolean,
           },
-          dairy_free: {
+          dairyFree: {
             type: GraphQLBoolean,
           },
-          ready_in_minutes: {
+          readyInMinutes: {
             type: GraphQLInt,
           },
           servings: {
@@ -160,27 +160,64 @@ const Mutation = new GraphQLObjectType({
 
           // UPDATE filters
 
-          filters.smart_filter = args.smart_filter;
-          filters.dish_type = args.dish_type;
+          filters.smartFilter = args.smartFilter;
+          filters.dishType = args.dishType;
           filters.cuisine = args.cuisine;
           filters.vegetarian = args.vegetarian;
           filters.vegan = args.vegan;
-          filters.gluten_free = args.gluten_free;
-          filters.dairy_free = args.dairy_free;
-          filters.ready_in_minutes = args.ready_in_minutes;
+          filters.glutenFree = args.glutenFree;
+          filters.dairyFree = args.dairyFree;
+          filters.readyInMinutes = args.readyInMinutes;
           filters.servings = args.servings;
-          /*
-          filters.diet = args.diet;
-          filters.dish_type = args.dish_type;
-          filters.cuisine = args.cuisine;
-          filters.additional_requests = args.additional_requests;
-          filters.time_to_cook = args.time_to_cook;
-          filters.servings = args.servings;
-          */
 
           await filters.save();
 
           return filters;
+        },
+      },
+      createFilters: {
+        type: Filter,
+        args: {
+          smartFilter: {
+            type: GraphQLBoolean,
+          },
+          dishType: {
+            type: GraphQLString,
+          },
+          cuisine: {
+            type: GraphQLString,
+          },
+          vegetarian: {
+            type: GraphQLBoolean,
+          },
+          vegan: {
+            type: GraphQLBoolean,
+          },
+          glutenFree: {
+            type: GraphQLBoolean,
+          },
+          dairyFree: {
+            type: GraphQLBoolean,
+          },
+          readyInMinutes: {
+            type: GraphQLInt,
+          },
+          servings: {
+            type: GraphQLInt,
+          },
+        },
+        resolve(_, args) {
+          return db.Filter.create({
+            smartFilter: args.smartFilter,
+            dishType: args.dishType,
+            cuisine: args.cuisine,
+            vegetarian: args.vegetarian,
+            vegan: args.vegan,
+            glutenFree: args.glutenFree,
+            dairyFree: args.dairyFree,
+            readyInMinutes: args.readyInMinutes,
+            servings: args.servings,
+          });
         },
       },
     };
