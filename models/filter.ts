@@ -2,7 +2,7 @@
 import { Model } from "sequelize";
 
 interface FilterAttributes {
-  user_id: number;
+  user_id: string;
   smartFilter: boolean;
   dishType: string;
   cuisine: string;
@@ -16,7 +16,7 @@ interface FilterAttributes {
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class Filter extends Model<FilterAttributes> {
-    user_id!: number;
+    user_id!: string;
     smartFilter!: boolean;
     dishType!: string;
     cuisine!: string;
@@ -30,7 +30,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
   Filter.init(
     {
       user_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         unique: true,
       },
       smartFilter: {
