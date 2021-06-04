@@ -10,6 +10,9 @@ const Filter = new GraphQLObjectType({
   description: "This represents a Filter",
   fields: () => {
     return {
+      user_id: {
+        type: GraphQLString,
+      },
       smartFilter: {
         type: GraphQLBoolean,
       },
