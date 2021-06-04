@@ -10,34 +10,10 @@ const Filter = new GraphQLObjectType({
   description: "This represents a Filter",
   fields: () => {
     return {
-      /*
-      diet: {
-        type: GraphQLString,
-      },
-      dish_type: {
-        type: GraphQLString,
-      },
-      cuisine: {
-        type: GraphQLString,
-      },
-      additional_requests: {
-        type: GraphQLString,
-      },
-      time_to_cook: {
-        type: GraphQLInt,
-      },
-      servings: {
-        type: GraphQLInt,
-      },
-      user_id: {
-        type: GraphQLString,
-      },
-*/
-
-      smart_filter: {
+      smartFilter: {
         type: GraphQLBoolean,
       },
-      dish_type: {
+      dishType: {
         type: GraphQLString,
       },
       cuisine: {
@@ -49,13 +25,13 @@ const Filter = new GraphQLObjectType({
       vegan: {
         type: GraphQLBoolean,
       },
-      gluten_free: {
+      glutenFree: {
         type: GraphQLBoolean,
       },
-      dairy_free: {
+      dairyFree: {
         type: GraphQLBoolean,
       },
-      ready_in_minutes: {
+      readyInMinutes: {
         type: GraphQLInt,
       },
       servings: {

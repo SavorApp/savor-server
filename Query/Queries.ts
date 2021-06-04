@@ -19,10 +19,10 @@ const Query = new GraphQLObjectType({
         type: Recipe,
         args: {
           // _id: { type: GraphQLString },
-          recipe_id: { type: GraphQLInt },
+          id: { type: GraphQLInt },
         },
         resolve(parent, args) {
-          return db.Recipe.findOne(args.recipe_id);
+          return db.Recipe.findOne(args.id);
         },
       },
       user: {
