@@ -125,6 +125,9 @@ const Mutation = new GraphQLObjectType({
       updateFilters: {
         type: Filter,
         args: {
+          user_id: {
+            type: GraphQLString,
+          },
           smartFilter: {
             type: GraphQLBoolean,
           },
@@ -178,6 +181,9 @@ const Mutation = new GraphQLObjectType({
       createFilters: {
         type: Filter,
         args: {
+          user_id: {
+            type: GraphQLString,
+          },
           smartFilter: {
             type: GraphQLBoolean,
           },
@@ -208,6 +214,7 @@ const Mutation = new GraphQLObjectType({
         },
         resolve(_, args) {
           return db.Filter.create({
+            user_id: args.user_id,
             smartFilter: args.smartFilter,
             dishType: args.dishType,
             cuisine: args.cuisine,
