@@ -30,15 +30,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
     servings!: number;
     ingredients!: [string];
     isSavored!: boolean;
-
-    static associate(models: any) {
-      // define association here
-      Recipe.belongsTo(models.Recipe, {
-        foreignKey: {
-          name: "_id",
-        },
-      });
-    }
   }
   Recipe.init(
     {
