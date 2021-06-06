@@ -12,7 +12,6 @@ const Filter = new GraphQLObjectType({
     return {
       user_id: {
         type: GraphQLString,
-        unique: true,
       },
       smartFilter: {
         type: GraphQLBoolean,
