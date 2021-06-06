@@ -18,18 +18,18 @@ interface RecipeAttributes {
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class Recipe extends Model<RecipeAttributes> implements RecipeAttributes {
-    recipe_id: number;
-    title: string;
-    cuisine: string;
-    dishType: string;
-    vegetarian: boolean;
-    vegan: boolean;
-    glutenFree: boolean;
-    dairyFree: boolean;
-    readyInMinutes: number;
-    servings: number;
-    ingredients: [string];
-    isSavored: boolean;
+    recipe_id!: number;
+    title!: string;
+    cuisine!: string;
+    dishType!: string;
+    vegetarian!: boolean;
+    vegan!: boolean;
+    glutenFree!: boolean;
+    dairyFree!: boolean;
+    readyInMinutes!: number;
+    servings!: number;
+    ingredients!: [string];
+    isSavored!: boolean;
   }
   Recipe.init(
     {
