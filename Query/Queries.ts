@@ -63,8 +63,12 @@ const Query = new GraphQLObjectType({
       },
       recipes: {
         type: new GraphQLList(Recipe),
-        resolve(root, args) {
-          return db.Recipe.findAll();
+        async resolve(root, args) {
+          try {
+            return db.Recipe.findAll();
+          } catch (error) {
+            return error;
+          }
         },
       },
       isSavored: {
