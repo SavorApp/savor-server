@@ -13,21 +13,19 @@ module.exports = (sequelize: any, DataTypes: any) => {
     username!: string;
     image_url!: string;
 
-    // static associate(models: any) {
-    //   // define association here
-    //   User.hasMany(models.Recipe, {
-    //     foreignKey: {
-    //       name: "user_id",
-    //       allowNull: false,
-    //     },
-    //   });
-    //   User.hasOne(models.Filter, {
-    //     foreignKey: {
-    //       name: "user_id",
-    //       allowNull: false,
-    //     },
-    //   });
-    // }
+    static associate(models: any) {
+      // define association here
+      User.hasMany(models.Recipe, {
+        foreignKey: {
+          name: "user_id",
+        },
+      });
+      User.hasOne(models.Filter, {
+        foreignKey: {
+          name: "user_id",
+        },
+      });
+    }
   }
   User.init(
     {
