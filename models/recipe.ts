@@ -2,7 +2,7 @@
 import { Model } from "sequelize";
 
 interface RecipeAttributes {
-  id: number;
+  recipe_id: number;
   title: string;
   cuisine: string;
   dishType: string;
@@ -18,7 +18,7 @@ interface RecipeAttributes {
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class Recipe extends Model<RecipeAttributes> implements RecipeAttributes {
-    id: number;
+    recipe_id: number;
     title: string;
     cuisine: string;
     dishType: string;
@@ -33,7 +33,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
   }
   Recipe.init(
     {
-      id: {
+      recipe_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
