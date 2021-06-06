@@ -21,7 +21,7 @@ const Mutation = new GraphQLObjectType({
           user_id: {
             type: GraphQLString,
           },
-          id: {
+          recipe_id: {
             type: GraphQLInt,
           },
           title: {
@@ -62,7 +62,7 @@ const Mutation = new GraphQLObjectType({
           try {
             const recipe = await db.Recipe.create({
               user_id: args.user_id,
-              id: args.id,
+              recipe_id: args.recipe_id,
               title: args.title,
               cuisine: args.cuisine,
               dishType: args.dishType,
@@ -107,14 +107,14 @@ const Mutation = new GraphQLObjectType({
         type: Recipe,
         args: {
           user_id: { type: GraphQLString },
-          id: { type: GraphQLInt },
+          recipe_id: { type: GraphQLInt },
         },
         async resolve(_, args) {
           try {
             const recipe = await db.Recipe.findOne({
               where: {
                 user_id: args.user_id,
-                id: args.id,
+                recipe_id: args.recipe_id,
               },
             });
             recipe.destroy();
@@ -206,7 +206,7 @@ const Mutation = new GraphQLObjectType({
           user_id: {
             type: GraphQLString,
           },
-          id: {
+          recipe_id: {
             type: GraphQLInt,
           },
           isSavored: {
@@ -216,7 +216,7 @@ const Mutation = new GraphQLObjectType({
         async resolve(_, args) {
           try {
             const recipe = await db.Recipe.findOne({
-              where: { user_id: args.user_id, id: args.id },
+              where: { user_id: args.user_id, recipe_id: args.recipe_id },
             });
 
             // UPDATE recipe

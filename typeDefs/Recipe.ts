@@ -14,7 +14,7 @@ const Recipe = new GraphQLObjectType({
       user_id: {
         type: GraphQLString,
       },
-      id: {
+      recipe_id: {
         type: GraphQLInt,
       },
       title: {
