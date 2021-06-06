@@ -39,11 +39,11 @@ const createFilters = () => {
 db.sequelize
   .sync({ force: true })
   .then(() => {
-    app.listen(port, () => {
+    app.listen(port, async () => {
       // -- Seeds the users table --
-      createUsers();
-      createRecipes();
-      createFilters();
+      await createUsers();
+      await createRecipes();
+      await createFilters();
 
       console.log(`🚀  Server ready at ${port}`);
     });
