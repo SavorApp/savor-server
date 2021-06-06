@@ -58,9 +58,9 @@ const Mutation = new GraphQLObjectType({
             type: GraphQLBoolean,
           },
         },
-        resolve(_, args) {
+        async resolve(_, args) {
           try {
-            return db.Recipe.create({
+            const recipe = await db.Recipe.create({
               user_id: args.user_id,
               id: args.id,
               title: args.title,
@@ -75,6 +75,7 @@ const Mutation = new GraphQLObjectType({
               ingredients: args.ingredients,
               isSavored: args.isSavored,
             });
+            return recipe;
           } catch (error) {
             throw new Error(error);
           }
@@ -90,11 +91,12 @@ const Mutation = new GraphQLObjectType({
         },
         async resolve(_, args) {
           try {
-            return db.User.create({
+            const user = await db.User.create({
               _id: args._id,
               username: args.username,
               image_url: args.image_url,
             });
+            return user;
           } catch (error) {
             throw new Error(error);
           }
@@ -265,7 +267,7 @@ const Mutation = new GraphQLObjectType({
         },
         async resolve(_, args) {
           try {
-            return db.Filter.create({
+            const filters = await db.Filter.create({
               user_id: args.user_id,
               smartFilter: args.smartFilter,
               dishType: args.dishType,
@@ -277,6 +279,7 @@ const Mutation = new GraphQLObjectType({
               readyInMinutes: args.readyInMinutes,
               servings: args.servings,
             });
+            return filters;
           } catch (error) {
             throw new Error(error);
           }
