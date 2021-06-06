@@ -196,8 +196,6 @@ const Mutation = new GraphQLObjectType({
             where: { user_id: args.user_id, id: args.id },
           });
 
-          console.log(recipe);
-
           // UPDATE recipe
 
           recipe.isSavored = args.isSavored;
