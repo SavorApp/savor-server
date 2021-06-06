@@ -31,7 +31,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
     {
       user_id: {
         type: DataTypes.STRING,
-        unique: true,
       },
       smartFilter: {
         type: DataTypes.BOOLEAN,
