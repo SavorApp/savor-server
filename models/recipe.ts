@@ -36,7 +36,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
       Recipe.belongsTo(models.Recipe, {
         foreignKey: {
           name: "_id",
-          allowNull: false,
         },
       });
     }
