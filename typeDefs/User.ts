@@ -22,14 +22,6 @@ const User = new GraphQLObjectType({
       image: {
         type: GraphQLString,
       },
-      recipe: {
-        type: new GraphQLList(Recipe),
-        resolve(parent, args) {
-          return db.Recipe.findOne({
-            where: { user_id: parent._id, id: args.id },
-          });
-        },
-      },
       recipes: {
         type: new GraphQLList(Recipe),
         resolve(parent, args) {
