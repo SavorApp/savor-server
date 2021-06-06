@@ -36,7 +36,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true,
       },
       title: {
         type: DataTypes.STRING,
