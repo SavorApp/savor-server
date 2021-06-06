@@ -59,21 +59,25 @@ const Mutation = new GraphQLObjectType({
           },
         },
         resolve(_, args) {
-          return db.Recipe.create({
-            user_id: args.user_id,
-            id: args.id,
-            title: args.title,
-            cuisine: args.cuisine,
-            dishType: args.dishType,
-            vegetarian: args.vegetarian,
-            vegan: args.vegan,
-            glutenFree: args.glutenFree,
-            dairyFree: args.dairyFree,
-            readyInMinutes: args.readyInMinutes,
-            servings: args.servings,
-            ingredients: args.ingredients,
-            isSavored: args.isSavored,
-          });
+          try {
+            return db.Recipe.create({
+              user_id: args.user_id,
+              id: args.id,
+              title: args.title,
+              cuisine: args.cuisine,
+              dishType: args.dishType,
+              vegetarian: args.vegetarian,
+              vegan: args.vegan,
+              glutenFree: args.glutenFree,
+              dairyFree: args.dairyFree,
+              readyInMinutes: args.readyInMinutes,
+              servings: args.servings,
+              ingredients: args.ingredients,
+              isSavored: args.isSavored,
+            });
+          } catch (error) {
+            return error;
+          }
         },
       },
 
@@ -84,12 +88,16 @@ const Mutation = new GraphQLObjectType({
           username: { type: GraphQLString },
           image_url: { type: GraphQLString },
         },
-        resolve(_, args) {
-          return db.User.create({
-            _id: args._id,
-            username: args.username,
-            image_url: args.image_url,
-          });
+        async resolve(_, args) {
+          try {
+            return db.User.create({
+              _id: args._id,
+              username: args.username,
+              image_url: args.image_url,
+            });
+          } catch (error) {
+            return error;
+          }
         },
       },
 
@@ -100,14 +108,18 @@ const Mutation = new GraphQLObjectType({
           id: { type: GraphQLInt },
         },
         async resolve(_, args) {
-          const recipe = await db.Recipe.findOne({
-            where: {
-              user_id: args.user_id,
-              id: args.id,
-            },
-          });
-          recipe.destroy();
-          return recipe;
+          try {
+            const recipe = await db.Recipe.findOne({
+              where: {
+                user_id: args.user_id,
+                id: args.id,
+              },
+            });
+            recipe.destroy();
+            return recipe;
+          } catch (error) {
+            return error;
+          }
         },
       },
 
@@ -117,9 +129,13 @@ const Mutation = new GraphQLObjectType({
           _id: { type: GraphQLString },
         },
         async resolve(_, args) {
-          const user = await db.User.findByPk(args._id);
-          user.destroy();
-          return user;
+          try {
+            const user = await db.User.findByPk(args._id);
+            user.destroy();
+            return user;
+          } catch (error) {
+            return error;
+          }
         },
       },
       updateFilters: {
@@ -157,25 +173,29 @@ const Mutation = new GraphQLObjectType({
           },
         },
         async resolve(_, args) {
-          const filters = await db.Filter.findOne({
-            where: { user_id: args.user_id },
-          });
+          try {
+            const filters = await db.Filter.findOne({
+              where: { user_id: args.user_id },
+            });
 
-          // UPDATE filters
+            // UPDATE filters
 
-          filters.smartFilter = args.smartFilter;
-          filters.dishType = args.dishType;
-          filters.cuisine = args.cuisine;
-          filters.vegetarian = args.vegetarian;
-          filters.vegan = args.vegan;
-          filters.glutenFree = args.glutenFree;
-          filters.dairyFree = args.dairyFree;
-          filters.readyInMinutes = args.readyInMinutes;
-          filters.servings = args.servings;
+            filters.smartFilter = args.smartFilter;
+            filters.dishType = args.dishType;
+            filters.cuisine = args.cuisine;
+            filters.vegetarian = args.vegetarian;
+            filters.vegan = args.vegan;
+            filters.glutenFree = args.glutenFree;
+            filters.dairyFree = args.dairyFree;
+            filters.readyInMinutes = args.readyInMinutes;
+            filters.servings = args.servings;
 
-          await filters.save();
+            await filters.save();
 
-          return filters;
+            return filters;
+          } catch (error) {
+            return error;
+          }
         },
       },
       updateRecipe: {
@@ -192,17 +212,21 @@ const Mutation = new GraphQLObjectType({
           },
         },
         async resolve(_, args) {
-          const recipe = await db.Recipe.findOne({
-            where: { user_id: args.user_id, id: args.id },
-          });
+          try {
+            const recipe = await db.Recipe.findOne({
+              where: { user_id: args.user_id, id: args.id },
+            });
 
-          // UPDATE recipe
+            // UPDATE recipe
 
-          recipe.isSavored = args.isSavored;
+            recipe.isSavored = args.isSavored;
 
-          await recipe.save();
+            await recipe.save();
 
-          return recipe;
+            return recipe;
+          } catch (error) {
+            return error;
+          }
         },
       },
       createFilters: {
@@ -239,19 +263,23 @@ const Mutation = new GraphQLObjectType({
             type: GraphQLInt,
           },
         },
-        resolve(_, args) {
-          return db.Filter.create({
-            user_id: args.user_id,
-            smartFilter: args.smartFilter,
-            dishType: args.dishType,
-            cuisine: args.cuisine,
-            vegetarian: args.vegetarian,
-            vegan: args.vegan,
-            glutenFree: args.glutenFree,
-            dairyFree: args.dairyFree,
-            readyInMinutes: args.readyInMinutes,
-            servings: args.servings,
-          });
+        async resolve(_, args) {
+          try {
+            return db.Filter.create({
+              user_id: args.user_id,
+              smartFilter: args.smartFilter,
+              dishType: args.dishType,
+              cuisine: args.cuisine,
+              vegetarian: args.vegetarian,
+              vegan: args.vegan,
+              glutenFree: args.glutenFree,
+              dairyFree: args.dairyFree,
+              readyInMinutes: args.readyInMinutes,
+              servings: args.servings,
+            });
+          } catch (error) {
+            return error;
+          }
         },
       },
     };

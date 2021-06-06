@@ -21,28 +21,44 @@ const Query = new GraphQLObjectType({
           // _id: { type: GraphQLString },
           id: { type: GraphQLInt },
         },
-        resolve(parent, args) {
-          return db.Recipe.findOne(args.id);
+        async resolve(parent, args) {
+          try {
+            return db.Recipe.findOne(args.id);
+          } catch (error) {
+            return error;
+          }
         },
       },
       user: {
         type: User,
         args: { _id: { type: GraphQLString } },
-        resolve(parent, args) {
-          return db.User.findByPk(args._id);
+        async resolve(parent, args) {
+          try {
+            return db.User.findByPk(args._id);
+          } catch (error) {
+            return error;
+          }
         },
       },
       savoredRecipes: {
         type: User,
         args: { _id: { type: GraphQLString } },
-        resolve(parent, args) {
-          return db.User.findByPk(args._id);
+        async resolve(parent, args) {
+          try {
+            return db.User.findByPk(args._id);
+          } catch (error) {
+            return error;
+          }
         },
       },
       users: {
         type: new GraphQLList(User),
-        resolve(root, args) {
-          return db.User.findAll();
+        async resolve(root, args) {
+          try {
+            return db.User.findAll();
+          } catch (error) {
+            return error;
+          }
         },
       },
       recipes: {
@@ -54,10 +70,14 @@ const Query = new GraphQLObjectType({
       isSavored: {
         type: new GraphQLList(Recipe),
         args: { _id: { type: GraphQLString } },
-        resolve(root, args) {
-          return db.Recipe.findAll({
-            where: { user_id: args._id, is_savored: true },
-          });
+        async resolve(root, args) {
+          try {
+            return db.Recipe.findAll({
+              where: { user_id: args._id, is_savored: true },
+            });
+          } catch (error) {
+            return error;
+          }
         },
       },
     };
