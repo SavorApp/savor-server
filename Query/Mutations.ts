@@ -178,6 +178,35 @@ const Mutation = new GraphQLObjectType({
           return filters;
         },
       },
+      updateRecipe: {
+        type: Recipe,
+        args: {
+          user_id: {
+            type: GraphQLString,
+          },
+          id: {
+            type: GraphQLInt,
+          },
+          isSavored: {
+            type: GraphQLBoolean,
+          },
+        },
+        async resolve(_, args) {
+          const recipe = await db.Filter.findOne({
+            where: { user_id: args.user_id, id: args.id },
+          });
+
+          console.log(recipe);
+
+          // UPDATE recipe
+
+          recipe.isSavored = args.isSavored;
+
+          await recipe.save();
+
+          return recipe;
+        },
+      },
       createFilters: {
         type: Filter,
         args: {
