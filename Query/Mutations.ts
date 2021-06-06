@@ -192,7 +192,7 @@ const Mutation = new GraphQLObjectType({
           },
         },
         async resolve(_, args) {
-          const recipe = await db.Filter.findOne({
+          const recipe = await db.Recipe.findOne({
             where: { user_id: args.user_id, id: args.id },
           });
 
