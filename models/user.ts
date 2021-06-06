@@ -19,6 +19,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
         foreignKey: {
           name: "user_id",
         },
+        constraints: false,
       });
       User.hasOne(models.Filter, {
         foreignKey: {
