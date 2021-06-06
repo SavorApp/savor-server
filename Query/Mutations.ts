@@ -76,7 +76,7 @@ const Mutation = new GraphQLObjectType({
               isSavored: args.isSavored,
             });
           } catch (error) {
-            return error;
+            throw new Error(error);
           }
         },
       },
@@ -96,7 +96,7 @@ const Mutation = new GraphQLObjectType({
               image_url: args.image_url,
             });
           } catch (error) {
-            return error;
+            throw new Error(error);
           }
         },
       },
@@ -118,7 +118,7 @@ const Mutation = new GraphQLObjectType({
             recipe.destroy();
             return recipe;
           } catch (error) {
-            return error;
+            throw new Error(error);
           }
         },
       },
@@ -134,7 +134,7 @@ const Mutation = new GraphQLObjectType({
             user.destroy();
             return user;
           } catch (error) {
-            return error;
+            throw new Error(error);
           }
         },
       },
@@ -194,7 +194,7 @@ const Mutation = new GraphQLObjectType({
 
             return filters;
           } catch (error) {
-            return error;
+            throw new Error(error);
           }
         },
       },
@@ -225,7 +225,7 @@ const Mutation = new GraphQLObjectType({
 
             return recipe;
           } catch (error) {
-            return error;
+            throw new Error(error);
           }
         },
       },
@@ -278,7 +278,7 @@ const Mutation = new GraphQLObjectType({
               servings: args.servings,
             });
           } catch (error) {
-            return error;
+            throw new Error(error);
           }
         },
       },

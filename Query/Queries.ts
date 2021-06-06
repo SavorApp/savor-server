@@ -25,7 +25,7 @@ const Query = new GraphQLObjectType({
           try {
             return db.Recipe.findOne(args.id);
           } catch (error) {
-            return error;
+            throw new Error(error);
           }
         },
       },
@@ -36,7 +36,7 @@ const Query = new GraphQLObjectType({
           try {
             return db.User.findByPk(args._id);
           } catch (error) {
-            return error;
+            throw new Error(error);
           }
         },
       },
@@ -47,7 +47,7 @@ const Query = new GraphQLObjectType({
           try {
             return db.User.findByPk(args._id);
           } catch (error) {
-            return error;
+            throw new Error(error);
           }
         },
       },
@@ -57,7 +57,7 @@ const Query = new GraphQLObjectType({
           try {
             return db.User.findAll();
           } catch (error) {
-            return error;
+            throw new Error(error);
           }
         },
       },
@@ -67,7 +67,7 @@ const Query = new GraphQLObjectType({
           try {
             return db.Recipe.findAll();
           } catch (error) {
-            return error;
+            throw new Error(error);
           }
         },
       },
@@ -80,7 +80,7 @@ const Query = new GraphQLObjectType({
               where: { user_id: args._id, is_savored: true },
             });
           } catch (error) {
-            return error;
+            throw new Error(error);
           }
         },
       },
