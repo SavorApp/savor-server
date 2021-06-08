@@ -19,11 +19,11 @@ const Query = new GraphQLObjectType({
         type: Recipe,
         args: {
           // _id: { type: GraphQLString },
-          id: { type: GraphQLInt },
+          recipe_id: { type: GraphQLInt },
         },
         async resolve(parent, args) {
           try {
-            return db.Recipe.findOne(args.id);
+            return db.Recipe.findOne(args.recipe_id);
           } catch (error) {
             throw new Error(error);
           }
