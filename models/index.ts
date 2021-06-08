@@ -1,19 +1,19 @@
 "use strict";
 
-require('dotenv').config()
+require("dotenv").config();
 
 const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
-import { config } from "../config/config";
+const config = require("../config/config");
 const db: any = {};
 
-let sequelize: any = new Sequelize(
-  process.env.DATABASE_URL ||
-    `postgres://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:5432/${process.env.DB_NAME}`
-);
+let sequelize: any = new Sequelize(config);
+
+// process.env.DATABASE_URL ||
+//   `postgres://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:5432/${process.env.DB_NAME}`
 
 fs.readdirSync(__dirname)
   .filter((file: string) => {
