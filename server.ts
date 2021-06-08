@@ -6,6 +6,7 @@ import { recipes } from "./seeders/recipes";
 import { filters } from "./seeders/filters";
 import cors from "cors";
 import Schema from "./schema";
+import { umzug } from "./models/index";
 
 const port = process.env.PORT || 4000;
 
@@ -38,4 +39,5 @@ const createFilters = () => {
 // The `listen` method launches a web server.
 app.listen(port, async () => {
   console.log(`🚀  Server ready at ${port}`);
+  await umzug.up();
 });

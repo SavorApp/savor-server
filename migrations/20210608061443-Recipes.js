@@ -1,14 +1,16 @@
 "use strict";
 
+const { Sequelize } = require("sequelize");
+
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  up: async ({ context: queryInterface }) => {
     /**
      * Add altering commands here.
      *
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    return queryInterface.createTable("Recipes", {
+    await queryInterface.createTable("Recipes", {
       recipe_id: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -55,13 +57,13 @@ module.exports = {
     });
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async ({ context: queryInterface }) => {
     /**
      * Add reverting commands here.
      *
      * Example:
      * await queryInterface.dropTable('users');
      */
-    return queryInterface.dropTable("Recipes");
+    await queryInterface.dropTable("Recipes");
   },
 };

@@ -9,12 +9,20 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require("../config/config");
 const db: any = {};
+import { Umzug, SequelizeStorage } from "umzug";
 
 // let sequelize: any = new Sequelize(config);
 let sequelize: any = new Sequelize(
   process.env.DATABASE_URL ||
     `postgres://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:5432/${process.env.DB_NAME}`
 );
+
+export const umzug = new Umzug({
+  migrations: { glob: "migrations/*.js" },
+  context: sequelize.getQueryInterface(),
+  storage: new SequelizeStorage({ sequelize }),
+  logger: console,
+});
 
 fs.readdirSync(__dirname)
   .filter((file: string) => {

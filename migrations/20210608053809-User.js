@@ -1,16 +1,15 @@
 "use strict";
-
-const { DataTypeNotSupportedError } = require("typeorm");
+const { Sequelize } = require("sequelize");
 
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  up: async ({ context: queryInterface }) => {
     /**
      * Add altering commands here.
      *
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    return queryInterface.createTable("Users", {
+    await queryInterface.createTable("Users", {
       _id: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -34,13 +33,13 @@ module.exports = {
     });
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async ({ context: queryInterface }) => {
     /**
      * Add reverting commands here.
      *
      * Example:
      * await queryInterface.dropTable('users');
      */
-    return queryInterface.dropTable("Users");
+    await queryInterface.dropTable("Users");
   },
 };
