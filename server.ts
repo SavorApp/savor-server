@@ -19,6 +19,6 @@ app.use(
 // The `listen` method launches a web server.
 app.listen(port, async () => {
   console.log(`🚀  Server ready at ${port}`);
-  // await umzug.up();
-  await umzug.down({ to: 0 });
+  await umzug.up();
+  // await umzug.down({ to: 0 });
 });
