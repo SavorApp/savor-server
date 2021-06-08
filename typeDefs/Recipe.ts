@@ -5,6 +5,7 @@ import {
   GraphQLInt,
   GraphQLList,
 } from "graphql";
+import { GraphQLDate } from "./User";
 
 const Recipe = new GraphQLObjectType({
   name: "Recipe",
@@ -49,6 +50,12 @@ const Recipe = new GraphQLObjectType({
       },
       isSavored: {
         type: GraphQLBoolean,
+      },
+      createdAt: {
+        type: GraphQLDate,
+      },
+      updatedAt: {
+        type: GraphQLDate,
       },
     };
   },

@@ -9,7 +9,7 @@ import Recipe from "./Recipe";
 import Filter from "./Filter";
 import db from "../models/index";
 
-const GraphQLDate = new GraphQLScalarType({
+export const GraphQLDate = new GraphQLScalarType({
   name: "Date",
   serialize(value) {
     return value;

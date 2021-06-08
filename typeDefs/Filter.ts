@@ -4,6 +4,7 @@ import {
   GraphQLString,
   GraphQLBoolean,
 } from "graphql";
+import { GraphQLDate } from "./User";
 
 const Filter = new GraphQLObjectType({
   name: "Filter",
@@ -39,6 +40,12 @@ const Filter = new GraphQLObjectType({
       },
       servings: {
         type: GraphQLInt,
+      },
+      createdAt: {
+        type: GraphQLDate,
+      },
+      updatedAt: {
+        type: GraphQLDate,
       },
     };
   },
