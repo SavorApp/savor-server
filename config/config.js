@@ -8,8 +8,5 @@ module.exports = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
   },
-  production: {
-    dialect: "postgres",
-    connection: process.env.DATABASE_URL,
-  },
+  production: process.env.DATABASE_URL,
 };
