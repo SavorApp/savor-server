@@ -13,6 +13,8 @@ module.exports = {
       _id: {
         type: Sequelize.STRING,
         primaryKey: true,
+        onDelete: "cascade",
+        onUpdate: "cascade",
       },
       username: {
         type: Sequelize.STRING,

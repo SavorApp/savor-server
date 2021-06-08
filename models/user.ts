@@ -21,8 +21,14 @@ module.exports = (sequelize: any, DataTypes: any) => {
       // define association here
       User.hasMany(models.Recipe, {
         foreignKey: "user_id",
+        onDelete: "cascade",
+        onUpdate: "cascade",
       });
-      User.hasOne(models.Filter, { foreignKey: "user_id" });
+      User.hasOne(models.Filter, {
+        foreignKey: "user_id",
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      });
     }
   }
   User.init(
