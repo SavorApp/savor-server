@@ -36,16 +36,11 @@ const createFilters = () => {
 };
 
 // The `listen` method launches a web server.
-db.sequelize
-  .sync({ force: true })
-  .then(() => {
-    app.listen(port, async () => {
-      // -- Seeds the users table --
-      await createUsers();
-      await createRecipes();
-      await createFilters();
+app.listen(port, async () => {
+  // -- Seeds the users table --
+  await createUsers();
+  await createRecipes();
+  await createFilters();
 
-      console.log(`🚀  Server ready at ${port}`);
-    });
-  })
-  .catch((err: Error) => console.log(err));
+  console.log(`🚀  Server ready at ${port}`);
+});
