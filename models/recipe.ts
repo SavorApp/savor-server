@@ -1,8 +1,8 @@
 "use strict";
 import { Model } from "sequelize";
-import { createNamespaceExportDeclaration } from "typescript";
 
 interface RecipeAttributes {
+  user_id: string;
   recipe_id: number;
   title: string;
   cuisine: string;
@@ -21,6 +21,7 @@ interface RecipeAttributes {
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class Recipe extends Model<RecipeAttributes> implements RecipeAttributes {
+    user_id!: string;
     recipe_id!: number;
     title!: string;
     cuisine!: string;
@@ -39,17 +40,20 @@ module.exports = (sequelize: any, DataTypes: any) => {
     static associate(models: any) {
       // define association here
       Recipe.belongsTo(models.User, {
-        foreignKey: {
-          name: "_id",
-        },
+        foreignKey: "user_id",
+        targetKey: "_id",
       });
     }
   }
   Recipe.init(
     {
+      user_id: {
+        type: DataTypes.STRING,
+      },
       recipe_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true,
       },
       title: {
         type: DataTypes.STRING,
@@ -93,6 +97,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
     },
 
     {
+      freezeTableName: true,
       sequelize,
       modelName: "Recipe",
     }

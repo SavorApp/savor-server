@@ -20,17 +20,9 @@ module.exports = (sequelize: any, DataTypes: any) => {
     static associate(models: any) {
       // define association here
       User.hasMany(models.Recipe, {
-        foreignKey: {
-          name: "user_id",
-        },
-        onDelete: "cascade",
+        foreignKey: "user_id",
       });
-      User.hasOne(models.Filter, {
-        foreignKey: {
-          name: "user_id",
-        },
-        onDelete: "cascade",
-      });
+      User.hasOne(models.Filter, { foreignKey: "user_id" });
     }
   }
   User.init(
@@ -38,7 +30,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
       _id: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
         primaryKey: true,
       },
       username: {
@@ -57,6 +48,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
       },
     },
     {
+      freezeTableName: true,
       sequelize,
       modelName: "User",
     }

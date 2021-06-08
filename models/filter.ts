@@ -34,9 +34,8 @@ module.exports = (sequelize: any, DataTypes: any) => {
     static associate(models: any) {
       // define association here
       Filter.belongsTo(models.User, {
-        foreignKey: {
-          name: "_id",
-        },
+        foreignKey: "user_id",
+        targetKey: "_id",
       });
     }
   }
@@ -44,6 +43,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
     {
       user_id: {
         type: DataTypes.STRING,
+        primaryKey: true,
       },
       smartFilter: {
         type: DataTypes.BOOLEAN,
@@ -80,6 +80,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
       },
     },
     {
+      freezeTableName: true,
       sequelize,
       modelName: "Filter",
     }

@@ -10,9 +10,14 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable("Filters", {
+    await queryInterface.createTable("Filter", {
       user_id: {
         type: Sequelize.STRING,
+        foreignKey: true,
+        references: {
+          model: "User",
+          key: "_id",
+        },
       },
       smartFilter: {
         type: Sequelize.BOOLEAN,
@@ -57,6 +62,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable("Filters");
+    await queryInterface.dropTable("Filter");
   },
 };
