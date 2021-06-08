@@ -37,10 +37,5 @@ const createFilters = () => {
 
 // The `listen` method launches a web server.
 app.listen(port, async () => {
-  // -- Seeds the users table --
-  await createUsers();
-  await createRecipes();
-  await createFilters();
-
   console.log(`🚀  Server ready at ${port}`);
 });
