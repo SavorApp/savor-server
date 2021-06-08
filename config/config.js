@@ -9,4 +9,5 @@ module.exports = {
     host: process.env.DB_HOST,
   },
   production: process.env.DATABASE_URL,
+  dialect: "postgres",
 };
