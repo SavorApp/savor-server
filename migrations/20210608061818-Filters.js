@@ -14,6 +14,8 @@ module.exports = {
       user_id: {
         type: Sequelize.STRING,
         foreignKey: true,
+        onDelete: "cascade",
+        onUpdate: "cascade",
         references: {
           model: "User",
           key: "_id",
