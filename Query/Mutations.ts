@@ -200,6 +200,7 @@ const Mutation = new GraphQLObjectType({
           }
         },
       },
+
       updateRecipe: {
         type: Recipe,
         args: {

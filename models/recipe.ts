@@ -1,5 +1,6 @@
 "use strict";
 import { Model } from "sequelize";
+import { createNamespaceExportDeclaration } from "typescript";
 
 interface RecipeAttributes {
   recipe_id: number;
@@ -30,6 +31,15 @@ module.exports = (sequelize: any, DataTypes: any) => {
     servings!: number;
     ingredients!: [string];
     isSavored!: boolean;
+
+    static associate(models: any) {
+      // define association here
+      Recipe.belongsTo(models.User, {
+        foreignKey: {
+          name: "_id",
+        },
+      });
+    }
   }
   Recipe.init(
     {

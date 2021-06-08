@@ -26,6 +26,15 @@ module.exports = (sequelize: any, DataTypes: any) => {
     dairyFree!: boolean;
     readyInMinutes!: number;
     servings!: number;
+
+    static associate(models: any) {
+      // define association here
+      Filter.belongsTo(models.User, {
+        foreignKey: {
+          name: "_id",
+        },
+      });
+    }
   }
   Filter.init(
     {
