@@ -3,10 +3,18 @@ import {
   GraphQLObjectType,
   GraphQLInt,
   GraphQLString,
+  GraphQLScalarType,
 } from "graphql";
 import Recipe from "./Recipe";
 import Filter from "./Filter";
 import db from "../models/index";
+
+const GraphQLDate = new GraphQLScalarType({
+  name: "Date",
+  serialize(value) {
+    return value;
+  },
+});
 
 const User = new GraphQLObjectType({
   name: "User",
@@ -33,6 +41,12 @@ const User = new GraphQLObjectType({
         resolve(parent, args) {
           return db.Filter.findAll({ where: { user_id: parent._id } });
         },
+      },
+      createdAt: {
+        type: GraphQLDate,
+      },
+      updatedAt: {
+        type: GraphQLDate,
       },
     };
   },

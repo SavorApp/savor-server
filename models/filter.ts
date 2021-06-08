@@ -12,6 +12,8 @@ interface FilterAttributes {
   dairyFree: boolean;
   readyInMinutes: number;
   servings: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
@@ -26,6 +28,8 @@ module.exports = (sequelize: any, DataTypes: any) => {
     dairyFree!: boolean;
     readyInMinutes!: number;
     servings!: number;
+    createdAt!: Date;
+    updatedAt!: Date;
 
     static associate(models: any) {
       // define association here
@@ -67,6 +71,12 @@ module.exports = (sequelize: any, DataTypes: any) => {
       },
       servings: {
         type: DataTypes.INTEGER,
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
       },
     },
     {

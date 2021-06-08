@@ -5,6 +5,8 @@ interface UserAttributes {
   _id: string;
   username: string;
   image_url: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
@@ -12,6 +14,8 @@ module.exports = (sequelize: any, DataTypes: any) => {
     _id!: string;
     username!: string;
     image_url!: string;
+    createdAt!: Date;
+    updatedAt!: Date;
 
     static associate(models: any) {
       // define association here
@@ -19,13 +23,13 @@ module.exports = (sequelize: any, DataTypes: any) => {
         foreignKey: {
           name: "user_id",
         },
-        // constraints: false,
         onDelete: "cascade",
       });
       User.hasOne(models.Filter, {
         foreignKey: {
           name: "user_id",
         },
+        onDelete: "cascade",
       });
     }
   }
@@ -44,6 +48,12 @@ module.exports = (sequelize: any, DataTypes: any) => {
       image_url: {
         type: DataTypes.STRING,
         allowNull: true,
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
       },
     },
     {

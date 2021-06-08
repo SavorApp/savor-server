@@ -15,6 +15,8 @@ interface RecipeAttributes {
   servings: number;
   ingredients: [string];
   isSavored: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
@@ -31,6 +33,8 @@ module.exports = (sequelize: any, DataTypes: any) => {
     servings!: number;
     ingredients!: [string];
     isSavored!: boolean;
+    createdAt!: Date;
+    updatedAt!: Date;
 
     static associate(models: any) {
       // define association here
@@ -79,6 +83,12 @@ module.exports = (sequelize: any, DataTypes: any) => {
       },
       isSavored: {
         type: DataTypes.BOOLEAN,
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
       },
     },
 
