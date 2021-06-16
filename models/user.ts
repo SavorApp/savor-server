@@ -2,44 +2,40 @@
 import { Model } from "sequelize";
 
 interface UserAttributes {
-  id: number;
+  _id: string;
   username: string;
   image_url: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class User extends Model<UserAttributes> implements UserAttributes {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    id!: number;
+    _id!: string;
     username!: string;
     image_url!: string;
+    createdAt!: Date;
+    updatedAt!: Date;
 
     static associate(models: any) {
       // define association here
       User.hasMany(models.Recipe, {
-        foreignKey: {
-          name: "user_id",
-          allowNull: false,
-        },
+        foreignKey: "user_id",
+        onDelete: "cascade",
+        onUpdate: "cascade",
       });
-      User.hasMany(models.Filter, {
-        foreignKey: {
-          name: "user_id",
-          allowNull: false,
-        },
+      User.hasOne(models.Filter, {
+        foreignKey: "user_id",
+        onDelete: "cascade",
+        onUpdate: "cascade",
       });
     }
   }
   User.init(
     {
-      id: {
-        type: DataTypes.INTEGER,
+      _id: {
+        type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
         primaryKey: true,
       },
       username: {
@@ -50,8 +46,15 @@ module.exports = (sequelize: any, DataTypes: any) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+      },
     },
     {
+      freezeTableName: true,
       sequelize,
       modelName: "User",
     }

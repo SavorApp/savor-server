@@ -1,5 +1,6 @@
 import {
   GraphQLList,
+  GraphQLString,
   GraphQLObjectType,
   GraphQLInt,
   GraphQLBoolean,
@@ -17,48 +18,70 @@ const Query = new GraphQLObjectType({
       recipe: {
         type: Recipe,
         args: {
-          user_id: { type: GraphQLInt },
-          is_savored: { type: GraphQLBoolean },
+          // _id: { type: GraphQLString },
+          recipe_id: { type: GraphQLInt },
         },
-        resolve(parent, args) {
-          return db.Recipe.findAll({
-            where: { user_id: args.user_id, is_savored: args.is_savored },
-          });
+        async resolve(parent, args) {
+          try {
+            return db.Recipe.findOne(args.recipe_id);
+          } catch (error) {
+            throw new Error(error);
+          }
         },
       },
       user: {
         type: User,
-        args: { id: { type: GraphQLInt } },
-        resolve(parent, args) {
-          return db.User.findByPk(args.id);
+        args: { _id: { type: GraphQLString } },
+        async resolve(parent, args) {
+          try {
+            return db.User.findByPk(args._id);
+          } catch (error) {
+            throw new Error(error);
+          }
         },
       },
       savoredRecipes: {
         type: User,
-        args: { id: { type: GraphQLInt } },
-        resolve(parent, args) {
-          return db.User.findByPk(args.id);
+        args: { _id: { type: GraphQLString } },
+        async resolve(parent, args) {
+          try {
+            return db.User.findByPk(args._id);
+          } catch (error) {
+            throw new Error(error);
+          }
         },
       },
       users: {
         type: new GraphQLList(User),
-        resolve(root, args) {
-          return db.User.findAll();
+        async resolve(root, args) {
+          try {
+            return db.User.findAll();
+          } catch (error) {
+            throw new Error(error);
+          }
         },
       },
       recipes: {
         type: new GraphQLList(Recipe),
-        resolve(root, args) {
-          return db.Recipe.findAll();
+        async resolve(root, args) {
+          try {
+            return db.Recipe.findAll();
+          } catch (error) {
+            throw new Error(error);
+          }
         },
       },
       isSavored: {
         type: new GraphQLList(Recipe),
-        args: { id: { type: GraphQLInt } },
-        resolve(root, args) {
-          return db.Recipe.findAll({
-            where: { user_id: args.id, is_savored: true },
-          });
+        args: { _id: { type: GraphQLString } },
+        async resolve(root, args) {
+          try {
+            return db.Recipe.findAll({
+              where: { user_id: args._id, is_savored: true },
+            });
+          } catch (error) {
+            throw new Error(error);
+          }
         },
       },
     };

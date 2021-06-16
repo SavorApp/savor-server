@@ -1,63 +1,86 @@
 "use strict";
 import { Model } from "sequelize";
 
-// diet (vegan, vegetarian, pescitarian, ...)
-// dish type (lunch, dinner, side, main, ...)
-// cuisine (Japanese, French, ...)
-// intolerance
-// time to cook
-// servings
-
 interface FilterAttributes {
-  diet: string;
-  dish_type: string;
+  user_id: string;
+  smartFilter: boolean;
+  dishType: string;
   cuisine: string;
-  additional_requests: string;
-  time_to_cook: number;
+  vegetarian: boolean;
+  vegan: boolean;
+  glutenFree: boolean;
+  dairyFree: boolean;
+  readyInMinutes: number;
   servings: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class Filter extends Model<FilterAttributes> {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-
-    diet!: string;
-    dish_type!: string;
+    user_id!: string;
+    smartFilter!: boolean;
+    dishType!: string;
     cuisine!: string;
-    additional_requests!: string;
-    time_to_cook!: number;
+    vegetarian!: boolean;
+    vegan!: boolean;
+    glutenFree!: boolean;
+    dairyFree!: boolean;
+    readyInMinutes!: number;
     servings!: number;
+    createdAt!: Date;
+    updatedAt!: Date;
 
-    // static associate(models: any) {
-    //   // define association here
-    // }
+    static associate(models: any) {
+      // define association here
+      Filter.belongsTo(models.User, {
+        foreignKey: "user_id",
+        targetKey: "_id",
+      });
+    }
   }
   Filter.init(
     {
-      diet: {
+      user_id: {
         type: DataTypes.STRING,
+        primaryKey: true,
       },
-      dish_type: {
+      smartFilter: {
+        type: DataTypes.BOOLEAN,
+      },
+      dishType: {
         type: DataTypes.STRING,
       },
       cuisine: {
         type: DataTypes.STRING,
       },
-      additional_requests: {
-        type: DataTypes.STRING,
+      vegetarian: {
+        type: DataTypes.BOOLEAN,
       },
-      time_to_cook: {
+      vegan: {
+        type: DataTypes.BOOLEAN,
+      },
+      glutenFree: {
+        type: DataTypes.BOOLEAN,
+      },
+      dairyFree: {
+        type: DataTypes.BOOLEAN,
+      },
+      readyInMinutes: {
         type: DataTypes.INTEGER,
       },
       servings: {
         type: DataTypes.INTEGER,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+      },
     },
     {
+      freezeTableName: true,
       sequelize,
       modelName: "Filter",
     }
