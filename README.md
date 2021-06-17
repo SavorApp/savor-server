@@ -1,10 +1,10 @@
-# Project Title
+# Savor-Server
 
-Simple overview of use/purpose.
+Savor's backend - deployed to Heroku (https://savored-server.herokuapp.com/)
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+Database and server for Savor App to retrieve recipe and user data.
 
 ## Getting Started
 
@@ -35,28 +35,9 @@ command to run if program contains helper info
 
 ## Authors
 
-Contributors names and contact info
+For support, feedback or, if you've found a bug you may contact any of the contributors:
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-
-## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+- [Johan Thestrup](https://github.com/JohanThestrup)
+- [Gaetan Karst](https://github.com/GaetanKarst)
+- [Mark Herring](https://github.com/Worldonawire)
+- [Yoshio Hasegawa](https://github.com/yoshiohasegawa)
