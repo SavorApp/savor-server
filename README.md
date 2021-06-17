@@ -1,22 +1,16 @@
 # Savor-Server
 
-Savor's backend - deployed to Heroku (https://savored-server.herokuapp.com/)
-
 ## Description
 
 Database and server for Savor App to retrieve recipe and user data.
 
 ## Getting Started
 
-### Dependencies
-
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
-
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+```
+npm i
+```
 
 ### Executing program
 
